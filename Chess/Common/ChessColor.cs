@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess.Figures
+namespace Chess.Common
 {
-    public interface IFigure
+    public enum ChessColor
     {
+        White, 
+        
+        Black,
 
+        Brown
     }
 }
