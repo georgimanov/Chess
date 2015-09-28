@@ -1,0 +1,6 @@
+D:\VS Projects\Chess\Chess\bin\Debug\Chess.exe.config
+D:\VS Projects\Chess\Chess\bin\Debug\Chess.exe
+D:\VS Projects\Chess\Chess\bin\Debug\Chess.pdb
+D:\VS Projects\Chess\Chess\obj\Debug\Chess.csprojResolveAssemblyReference.cache
+D:\VS Projects\Chess\Chess\obj\Debug\Chess.exe
+D:\VS Projects\Chess\Chess\obj\Debug\Chess.pdb
