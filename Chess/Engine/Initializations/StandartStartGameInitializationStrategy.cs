@@ -16,7 +16,7 @@
         private const int StandartGameTotalRows = 8;
         private const int StandartGameTotalCols = 8;
 
-        private IList<Type> figureTypes;
+        private readonly IList<Type> figureTypes;
 
         public StandartStartGameInitializationStrategy()
         {
