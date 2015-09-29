@@ -14,10 +14,16 @@
         private const int CharactersPerColPerBoardSquare = 9;
         private const ConsoleColor DarskSquareConsoleColor = ConsoleColor.DarkGray;
         private const ConsoleColor LightSquareConsoleColor = ConsoleColor.Gray;
-
         private const int ConsoleHeight = 80;
-
         private const int ConsoleWidth = 100;
+
+        public ConsoleRenderer()
+        {
+            Console.WindowHeight = ConsoleHeight;
+            Console.WindowWidth = ConsoleWidth;
+            Console.BufferHeight = ConsoleHeight;
+            Console.BufferWidth = ConsoleWidth;
+        }
 
         public void RenderMainMenu()
         {
@@ -28,9 +34,6 @@
 
         public void RenderBoard(IBoard board)
         {
-            Console.WindowHeight = ConsoleHeight;
-            Console.WindowWidth = ConsoleWidth;
-
             // TODO: Validate Console Dimension
             var startRowPrint = Console.WindowHeight / 2 - (board.TotalRows / 2) * CharactersPerRowPerBoardSquare;
             var startColPrint = Console.WindowWidth / 2 - (board.TotalCols / 2) * CharactersPerColPerBoardSquare;
