@@ -4,14 +4,13 @@
     using System.Threading;
 
     using Chess.Board.Contracts;
+    using Chess.Common;
     using Chess.Common.Console;
     using Chess.Renderers.Contracts;
 
     public class ConsoleRenderer : IRenderer
     {
         private const string Logo = "Just Chess";
-        private const int CharactersPerRowPerBoardSquare = 9;
-        private const int CharactersPerColPerBoardSquare = 9;
         private const ConsoleColor DarskSquareConsoleColor = ConsoleColor.DarkGray;
         private const ConsoleColor LightSquareConsoleColor = ConsoleColor.Gray;
         private const int ConsoleHeight = 80;
@@ -35,8 +34,8 @@
         public void RenderBoard(IBoard board)
         {
             // TODO: Validate Console Dimension
-            var startRowPrint = Console.WindowHeight / 2 - (board.TotalRows / 2) * CharactersPerRowPerBoardSquare;
-            var startColPrint = Console.WindowWidth / 2 - (board.TotalCols / 2) * CharactersPerColPerBoardSquare;
+            var startRowPrint = Console.WindowWidth / 2 - (board.TotalRows / 2) * ConsoleConstants.CharactersPerRowPerBoardSquare;
+            var startColPrint = Console.WindowHeight / 2 - (board.TotalCols / 2) * ConsoleConstants.CharactersPerColPerBoardSquare;
 
             int currentRowPrint = startRowPrint;
             int currentColPrint = startColPrint;
@@ -47,29 +46,26 @@
             {
                 for (int left = 0; left < board.TotalRows; left++)
                 {
-                    currentRowPrint = startRowPrint + left * CharactersPerColPerBoardSquare;
-                    currentColPrint = startColPrint + top * CharactersPerRowPerBoardSquare;
+                    currentColPrint = startRowPrint + left * ConsoleConstants.CharactersPerColPerBoardSquare;
+                    currentRowPrint = startColPrint + top * ConsoleConstants.CharactersPerRowPerBoardSquare;
+
+                    ConsoleColor backgroundColor;
 
                     if (counter % 2 == 0)
                     {
+                        backgroundColor = DarskSquareConsoleColor;
                         Console.BackgroundColor = DarskSquareConsoleColor;
                     }
                     else
                     {
+                        backgroundColor = LightSquareConsoleColor;
                         Console.BackgroundColor = LightSquareConsoleColor;
                     }
 
-                    //Console.SetCursorPosition(currentColPrint, currentRowPrint);
-                    //Console.Write(" ");
+                    var position = Position.FromArrayCoordinates(top, left, board.TotalRows);
 
-                    for (int i = 0; i < CharactersPerRowPerBoardSquare; i++)
-                    {
-                        for (int j = 0; j < CharactersPerColPerBoardSquare; j++)
-                        {
-                            Console.SetCursorPosition(currentColPrint + j, currentRowPrint + i);
-                            Console.Write(" ");
-                        }
-                    }
+                    var figure = board.GetFigureAtPosition(position);
+                    ConsoleHelpers.PrintFigure(figure, backgroundColor, currentRowPrint, currentColPrint);
 
                     counter++;
                 }
