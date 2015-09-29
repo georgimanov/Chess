@@ -2,10 +2,11 @@
 {
     using System;
 
+    using Chess.Board.Contracts;
     using Chess.Common;
     using Chess.Figures.Contracts;
 
-    public class Board
+    public class Board : IBoard
     {
         private readonly IFigure[,] board;
 

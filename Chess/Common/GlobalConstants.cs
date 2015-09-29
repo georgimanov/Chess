@@ -12,6 +12,8 @@ namespace Chess.Common
 
         public const int StandartGameTotalBoardCols = 8;
 
+        public const int StandartGameNumberOfPlayers = 2;
+
         public const string EmptyString = "";
 
         public const int MinimumRowValueOnBoard = 1;
@@ -21,6 +23,5 @@ namespace Chess.Common
         public const char MinimumColValueOnBoard = 'a';
 
         public const char MaximumColValueOnBoard = 'h';
-
     }
 }

@@ -42,19 +42,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board\Board.cs" />
+    <Compile Include="Board\Contracts\IBoard.cs" />
+    <Compile Include="ChessFacade.cs" />
     <Compile Include="Common\ChessColor.cs" />
+    <Compile Include="Common\Console\ConsoleHelpers.cs" />
     <Compile Include="Common\GlobalConstants.cs" />
     <Compile Include="Common\GlobalErrorMessages.cs" />
     <Compile Include="Common\ObjectValidator.cs" />
     <Compile Include="Common\Position.cs" />
     <Compile Include="Engine\Contracts\IChessEngine.cs" />
+    <Compile Include="Engine\Contracts\IGameInitializationStrategy.cs" />
+    <Compile Include="Engine\Initializations\StandartStartGameInitializationStrategy.cs" />
     <Compile Include="Engine\StandartTwoPlayerEngine.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Figures\Bishop.cs" />
+    <Compile Include="Figures\Contracts\BaseFigure.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
+    <Compile Include="Figures\King.cs" />
+    <Compile Include="Figures\Knight.cs" />
     <Compile Include="Figures\Pawn.cs" />
+    <Compile Include="Figures\Queen.cs" />
+    <Compile Include="Figures\Rook.cs" />
+    <Compile Include="InputProviders\ConsoleInputProvider.cs" />
+    <Compile Include="InputProviders\Contracts\IInputProvider.cs" />
     <Compile Include="Players\Contracts\IPlayer.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\ConsoleRenderer.cs" />
+    <Compile Include="Renderers\Contracts\IRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

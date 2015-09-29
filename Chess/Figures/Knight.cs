@@ -3,9 +3,9 @@
     using Chess.Common;
     using Chess.Figures.Contracts;
 
-    public class Pawn : BaseFigure, IFigure
+    public class Knight : BaseFigure, IFigure
     {
-        public Pawn(ChessColor color)
+        public Knight(ChessColor color)
             : base(color)
         {
         }
