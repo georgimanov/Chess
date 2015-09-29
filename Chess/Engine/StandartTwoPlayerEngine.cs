@@ -7,6 +7,7 @@
     using Chess.Common;
     using Chess.Engine.Contracts;
     using Chess.InputProviders.Contracts;
+    using Chess.Players;
     using Chess.Players.Contracts;
     using Chess.Renderers.Contracts;
 
@@ -28,7 +29,17 @@
 
         public void Initialize(IGameInitializationStrategy gameInitializationStrategy)
         {
-            var players = this.input.GetPlayers(GlobalConstants.StandartGameNumberOfPlayers);
+            // TODO: Remove
+            // using Chess.Players;
+            // Added for development purposes only 
+            var players = new List<IPlayer>
+            {
+                new Player("Pesho", ChessColor.Black),
+                new Player("Gosho", ChessColor.White),
+            };
+
+            // Use this
+            //var players = this.input.GetPlayers(GlobalConstants.StandartGameNumberOfPlayers);
             gameInitializationStrategy.Initialize(players, this.board);
             this.renderer.RenderBoard(this.board);
         }
