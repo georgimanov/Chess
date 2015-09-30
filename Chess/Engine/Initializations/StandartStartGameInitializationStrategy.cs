@@ -44,7 +44,7 @@
             this.AddPawnsToBoardRow(firstPlayer, board, 7);
             
             this.AddPawnsToBoardRow(secondPlayer, board, 2);
-            this.AddPawnsToBoardRow(secondPlayer, board, 1);
+            this.AddArmyToBoardRow(secondPlayer, board, 1);
         }
 
         private void AddPawnsToBoardRow(IPlayer player, IBoard board, int chessRow)
