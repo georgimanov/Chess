@@ -24,6 +24,6 @@ namespace Chess.Common
 
         public const char MaximumColValueOnBoard = 'h';
 
-      
+        
     }
 }

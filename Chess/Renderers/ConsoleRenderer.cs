@@ -13,15 +13,24 @@
         private const string Logo = "Just Chess";
         private const ConsoleColor DarskSquareConsoleColor = ConsoleColor.DarkGray;
         private const ConsoleColor LightSquareConsoleColor = ConsoleColor.Gray;
-        private const int ConsoleHeight = 80;
-        private const int ConsoleWidth = 100;
+        private const int Height = 80;
+        private const int Width = 100;
 
         public ConsoleRenderer()
         {
-            Console.WindowHeight = ConsoleHeight;
-            Console.WindowWidth = ConsoleWidth;
-            Console.BufferHeight = ConsoleHeight;
-            Console.BufferWidth = ConsoleWidth;
+            InitializeConsoleSettings();
+        }
+
+        private static void InitializeConsoleSettings()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Clear();
+            Console.Title = ConsoleConstants.ConsoleChessTitle;
+            Console.WindowHeight = Height;
+            Console.WindowWidth = Width;
+            Console.BufferHeight = Height;
+            Console.BufferWidth = Width;
         }
 
         public void RenderMainMenu()

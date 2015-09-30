@@ -88,19 +88,6 @@
                     {false, false, false, false, false, false, false, false, false},
                 }
             },
-            {"Nullable" , new bool[,] 
-                {
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                    {false, false, false, false, false, false, false, false, false},
-                }
-            }
         };
 
         public static ConsoleColor ToConsoleColor(this ChessColor chessColor)
