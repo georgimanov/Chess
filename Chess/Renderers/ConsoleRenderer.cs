@@ -23,6 +23,7 @@
 
         private static void InitializeConsoleSettings()
         {
+            // TODO: Change this something calculated
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Clear();
@@ -81,11 +82,13 @@
                 counter++;
 
             }
+        }
 
-            string message = string.Format("Player {0} turn", "pesho");
-            ConsoleHelpers.SetCursorAtTopCenter(message.Length);
-            Console.WriteLine(message);
-            Console.ReadLine();
+        public void PrintErrorMessage(string errorMessage)
+        {
+            ConsoleHelpers.SetCursorAtTopCenterInput(errorMessage.Length);
+            Console.Write(errorMessage);
+            Thread.Sleep(1500);
         }
     }
 }

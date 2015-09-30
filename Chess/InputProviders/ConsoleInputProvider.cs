@@ -28,5 +28,26 @@
 
             return players;
         }
+
+        /// <summary>
+        /// Command is in format 
+        ///     a5-c5
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns></returns>
+        public Move GetNextPlayerMove(IPlayer player)
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            var message = string.Format("{0} is next: ", player.Name);
+            
+            ConsoleHelpers.SetCursorAtTopCenter(message.Length);
+            Console.WriteLine(message);
+            ConsoleHelpers.SetCursorAtTopCenterInput(message.Length);
+            
+            var positionAsString = Console.ReadLine().Trim().ToLower();
+            var move = ConsoleHelpers.CreateMoveFromCommand(positionAsString);
+           
+            return move;
+        }
     }
 }

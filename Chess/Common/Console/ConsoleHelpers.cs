@@ -116,9 +116,18 @@
 
         public static void SetCursorAtTopCenter(int lenghtOfMessage)
         {
-            int centerRow = 2;
+            int centerRow = 1;
 
             int centerCol = Console.WindowWidth / 2 - lenghtOfMessage / 2;
+
+            Console.SetCursorPosition(centerCol, centerRow);
+        }
+
+        public static void SetCursorAtTopCenterInput(int lenghtOfMessage)
+        {
+            int centerRow = 1;
+
+            int centerCol = Console.WindowWidth / 2 + lenghtOfMessage / 2 + 1;
 
             Console.SetCursorPosition(centerCol, centerRow);
         }
@@ -169,6 +178,19 @@
                     Console.Write(" ");
                 }
             }
+        }
+
+        public static Move CreateMoveFromCommand(string command)
+        {
+            var positionAsString = command.Split('-');
+            var fromAsString = positionAsString[0];
+            var toAsString = positionAsString[0];
+
+            var fromPosition = Position.FromChessCoordinates(fromAsString[1] - '0', fromAsString[0]);
+
+            var toPosition = Position.FromChessCoordinates(toAsString[1] - '0', toAsString[0]);
+
+            return new Move(fromPosition, toPosition);
         }
     }
 }

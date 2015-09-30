@@ -1,5 +1,6 @@
 ﻿namespace Chess.Engine
 {
+    using System;
     using System.Collections.Generic;
 
     using Chess.Board;
@@ -13,12 +14,14 @@
 
     public class StandartTwoPlayerEngine : IChessEngine
     {
-        private readonly IList<IPlayer> players;
+        private IList<IPlayer> players;
         private readonly IRenderer renderer;
         private readonly IInputProvider input;
 
         private readonly IBoard board;
 
+
+        private int currentPlayerIndex;
 
         public StandartTwoPlayerEngine(IRenderer renderer, IInputProvider inputProvider  )
         {
@@ -27,17 +30,21 @@
             this.board = new Board();
         }
 
+       
+
         public void Initialize(IGameInitializationStrategy gameInitializationStrategy)
         {
             // TODO: Remove
             // using Chess.Players;
             // Added for development purposes only 
-            var players = new List<IPlayer>
+            this.players = new List<IPlayer>
             {
                 new Player("Pesho", ChessColor.Black),
                 new Player("Gosho", ChessColor.White),
             };
 
+            this.SetFirstPlayerIndex();
+            
             // Use this
             //var players = this.input.GetPlayers(GlobalConstants.StandartGameNumberOfPlayers);
             gameInitializationStrategy.Initialize(players, this.board);
@@ -46,7 +53,22 @@
 
         public void Start()
         {
-            throw new System.NotImplementedException();
+            while (true)
+            {
+                try
+                {
+                    var player = this.GetNextPlayer();
+                    var move = this.input.GetNextPlayerMove(player);
+
+                }
+                catch (Exception exception)
+                {
+                    this.currentPlayerIndex--;
+                    this.renderer.PrintErrorMessage(exception.Message);
+                }
+            }
+
+           
         }
 
         public void WinnginConditions()
@@ -59,6 +81,29 @@
             get
             {
                 return new List<IPlayer>(this.players);
+            }
+        }
+
+        private IPlayer GetNextPlayer()
+        {
+            this.currentPlayerIndex++;
+            if (this.currentPlayerIndex >= this.players.Count)
+            {
+                this.currentPlayerIndex = 0;
+            }
+
+            return this.players[this.currentPlayerIndex];
+        }
+
+        private void SetFirstPlayerIndex()
+        {
+            for (int i = 0; i < this.players.Count; i++)
+            {
+                if (this.players[i].Color == ChessColor.White)
+                {
+                    this.currentPlayerIndex = i;
+                    return;
+                }
             }
         }
     }
