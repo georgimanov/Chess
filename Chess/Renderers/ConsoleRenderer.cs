@@ -82,8 +82,10 @@
 
             }
 
+            string message = string.Format("Player {0} turn", "pesho");
+            ConsoleHelpers.SetCursorAtTopCenter(message.Length);
+            Console.WriteLine(message);
             Console.ReadLine();
-
         }
     }
 }

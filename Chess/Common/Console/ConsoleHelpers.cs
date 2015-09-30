@@ -114,6 +114,15 @@
             Console.SetCursorPosition(centerCol, centerRow);
         }
 
+        public static void SetCursorAtTopCenter(int lenghtOfMessage)
+        {
+            int centerRow = 2;
+
+            int centerCol = Console.WindowWidth / 2 - lenghtOfMessage / 2;
+
+            Console.SetCursorPosition(centerCol, centerRow);
+        }
+
         public static void PrintFigure(IFigure figure, ConsoleColor backgroundColor,
              int top, int left)
         {
