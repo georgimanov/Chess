@@ -57,6 +57,7 @@
     <Compile Include="Engine\Initializations\StandartStartGameInitializationStrategy.cs" />
     <Compile Include="Engine\StandartTwoPlayerEngine.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Movements\AnPasanMovement.cs" />
     <Compile Include="Figures\Bishop.cs" />
     <Compile Include="Figures\Contracts\BaseFigure.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="Figures\Rook.cs" />
     <Compile Include="InputProviders\ConsoleInputProvider.cs" />
     <Compile Include="InputProviders\Contracts\IInputProvider.cs" />
+    <Compile Include="Movements\Contracts\IMovement.cs" />
+    <Compile Include="Movements\NormalPawnMovement.cs" />
     <Compile Include="Players\Contracts\IPlayer.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

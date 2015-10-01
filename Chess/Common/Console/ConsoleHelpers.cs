@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
 
-    using Chess.Figures;
     using Chess.Figures.Contracts;
 
     public static class ConsoleHelpers

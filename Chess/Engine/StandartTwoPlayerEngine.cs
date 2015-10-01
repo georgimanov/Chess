@@ -15,15 +15,17 @@
 
     public class StandartTwoPlayerEngine : IChessEngine
     {
-        private IList<IPlayer> players;
-        private readonly IRenderer renderer;
-        private readonly IInputProvider input;
-
         private readonly IBoard board;
+
+        private IList<IPlayer> players;
+
+        private readonly IRenderer renderer;
+
+        private readonly IInputProvider input;
 
         private int currentPlayerIndex;
 
-        public StandartTwoPlayerEngine(IRenderer renderer, IInputProvider inputProvider  )
+        public StandartTwoPlayerEngine(IRenderer renderer, IInputProvider inputProvider)
         {
             this.renderer = renderer;
             this.input = inputProvider;
@@ -35,16 +37,15 @@
             // TODO: Remove
             // using Chess.Players;
             // Added for development purposes only 
-
             // TODO: If players are changed - board is reversed
             this.players = new List<IPlayer>
-            {
-                new Player("[Black]Gosho", ChessColor.Black),
-                new Player("[White]Pesho", ChessColor.White),
-            };
+                               {
+                                   new Player("[Black]Gosho", ChessColor.Black),
+                                   new Player("[White]Pesho", ChessColor.White),
+                               };
 
             this.SetFirstPlayerIndex();
-            
+
             // Use this
             //var players = this.input.GetPlayers(GlobalConstants.StandartGameNumberOfPlayers);
             gameInitializationStrategy.Initialize(players, this.board);
@@ -60,10 +61,29 @@
                     var player = this.GetNextPlayer();
                     var move = this.input.GetNextPlayerMove(player);
                     var from = move.From;
+                    var to = move.To;
                     var figure = this.board.GetFigureAtPosition(from);
                     this.CheckIfPlayerOwnsFigure(player, figure, from);
+                    this.CheckIfToPositionIsEmpty(figure, to);
+                    
+                    var availableMovements = figure.Move();
 
+                    foreach (var movement in availableMovements)
+                    {
+                        movement.ValidateMove(figure, this.board, move);
+                    }
 
+                    // TODO: On every move check if we are in check.
+                    // TODO: Check pawn on last row
+                    // TODO: Check is when 
+                    // ПАТ -> when the last three moves are the same 
+                    //   Memento?
+                    // TODO: if not castle - move figure (Check castel (rockade) - check if castle is valid, Check pawn for An-Pasan)
+                    // TODO: Move figure
+                    // TODO: Chech check (chess)
+                    // TODO: If in check - check checkmate
+                    // TODO: if not in check - check draw
+                    // TODO: Continue
                 }
                 catch (Exception exception)
                 {
@@ -71,8 +91,6 @@
                     this.renderer.PrintErrorMessage(exception.Message);
                 }
             }
-
-           
         }
 
         public void WinnginConditions()
@@ -120,7 +138,18 @@
 
             if (figure.Color != player.Color)
             {
-                throw new InvalidOperationException(string.Format("Figure at this position {0}{1} is not yours", from.Col, from.Row));
+                throw new InvalidOperationException(
+                    string.Format("Figure at this position {0}{1} is not yours", from.Col, from.Row));
+            }
+        }
+
+        private void CheckIfToPositionIsEmpty(IFigure figure, Position to)
+        {
+            var figureAtPosition = this.board.GetFigureAtPosition(to);
+            if (figureAtPosition != null && figureAtPosition.Color == figure.Color)
+            {
+                throw new InvalidOperationException(
+                   string.Format("You already have a figure at {0}{1}!", to.Col, to.Row));
             }
         }
     }

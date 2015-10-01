@@ -10,7 +10,6 @@
 
     public class ConsoleRenderer : IRenderer
     {
-        private const string Logo = "Just Chess";
         private const ConsoleColor DarskSquareConsoleColor = ConsoleColor.DarkGray;
         private const ConsoleColor LightSquareConsoleColor = ConsoleColor.Gray;
 
@@ -34,8 +33,9 @@
 
         public void RenderMainMenu()
         {
-            ConsoleHelpers.SetCursorAtCenter(Logo.Length);
-            Console.WriteLine(Logo);
+            // TODO: Add main menu
+            ConsoleHelpers.SetCursorAtCenter(GlobalConstants.LogoTitle.Length);
+            Console.WriteLine(GlobalConstants.LogoTitle);
             Thread.Sleep(1000);
         }
 
@@ -95,7 +95,6 @@
                 Console.SetCursorPosition(start + i * ConsoleConstants.CharactersPerColPerBoardSquare, startColPrint + boardTotalRows * ConsoleConstants.CharactersPerColPerBoardSquare);
                 Console.Write((char)('a' + i));
             }
-
             
             // Print numbers
             start = startColPrint + ConsoleConstants.CharactersPerColPerBoardSquare / 2;

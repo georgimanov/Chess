@@ -24,6 +24,8 @@ namespace Chess.Common
 
         public const char MaximumColValueOnBoard = 'h';
 
-        public const int MessageDelayTime = 1500; 
+        public const int MessageDelayTime = 1500;
+
+        public const string LogoTitle = "Just Chess";
     }
 }

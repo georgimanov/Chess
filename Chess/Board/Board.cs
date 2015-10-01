@@ -1,7 +1,5 @@
 ﻿namespace Chess.Board
 {
-    using System;
-
     using Chess.Board.Contracts;
     using Chess.Common;
     using Chess.Figures.Contracts;
