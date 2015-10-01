@@ -10,6 +10,7 @@
     public class NormalPawnMovement : IMovement
     {
         private const string PawnBackwardsErrorMessage = "Pawns cannot move backwards!";
+        private const string PawnInvalidMove = "Pawns cannot move this way!";
 
         public void ValidateMove(IFigure figure, IBoard board, Move move)
         {
@@ -84,7 +85,7 @@
                 }
             }
 
-            throw new NotImplementedException();
+            throw new InvalidOperationException(PawnInvalidMove);
         }
 
         private bool CheckOtherFigureIfValid(IBoard board, Position to, ChessColor color)

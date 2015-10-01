@@ -5,7 +5,7 @@
         public static void Main()
         {
             // https://www.youtube.com/watch?v=goBgD_f7-6o
-            // Time: 5:12:48
+            // Time: 5:32:52
             ChessFacade.Start();
 
             // State pattern

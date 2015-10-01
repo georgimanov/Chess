@@ -9,6 +9,8 @@
     using Chess.Engine.Contracts;
     using Chess.Figures.Contracts;
     using Chess.InputProviders.Contracts;
+    using Chess.Movements.Contracts;
+    using Chess.Movements.Strategies;
     using Chess.Players;
     using Chess.Players.Contracts;
     using Chess.Renderers.Contracts;
@@ -16,6 +18,8 @@
     public class StandartTwoPlayerEngine : IChessEngine
     {
         private readonly IBoard board;
+
+        private readonly IMovementStrategy movementStrategy;
 
         private IList<IPlayer> players;
 
@@ -25,10 +29,12 @@
 
         private int currentPlayerIndex;
 
+
         public StandartTwoPlayerEngine(IRenderer renderer, IInputProvider inputProvider)
         {
             this.renderer = renderer;
             this.input = inputProvider;
+            this.movementStrategy = new NormalMovementStrategy();
             this.board = new Board();
         }
 
@@ -66,7 +72,7 @@
                     this.CheckIfPlayerOwnsFigure(player, figure, from);
                     this.CheckIfToPositionIsEmpty(figure, to);
                     
-                    var availableMovements = figure.Move();
+                    var availableMovements = figure.Move(this.movementStrategy);
 
                     foreach (var movement in availableMovements)
                     {

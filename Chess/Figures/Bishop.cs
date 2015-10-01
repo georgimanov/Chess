@@ -12,7 +12,7 @@
         {
         }
 
-        public override ICollection<IMovement> Move()
+        public override ICollection<IMovement> Move(IMovementStrategy strategy)
         {
             throw new System.NotImplementedException();
         }

@@ -4,7 +4,6 @@
 
     using Chess.Common;
     using Chess.Figures.Contracts;
-    using Chess.Movements;
     using Chess.Movements.Contracts;
 
     public class Pawn : BaseFigure, IFigure
@@ -14,13 +13,9 @@
         {
         }
 
-        public override ICollection<IMovement> Move()
+        public override ICollection<IMovement> Move(IMovementStrategy strategy)
         {
-            // TODO: Get this list from another class!
-            return new List<IMovement>
-                {
-                    new NormalPawnMovement()
-                };
+            return strategy.GetMovements(this.GetType().Name);
         }
     }
 }
