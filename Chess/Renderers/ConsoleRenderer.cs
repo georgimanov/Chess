@@ -13,7 +13,6 @@
         private const string Logo = "Just Chess";
         private const ConsoleColor DarskSquareConsoleColor = ConsoleColor.DarkGray;
         private const ConsoleColor LightSquareConsoleColor = ConsoleColor.Gray;
-    
 
         public ConsoleRenderer()
         {
@@ -160,7 +159,7 @@
             ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerMessagesAndIO);
             ConsoleHelpers.SetCursorTopCenter(errorMessage.Length);
             Console.Write(errorMessage);
-            Thread.Sleep(1500);
+            Thread.Sleep(GlobalConstants.MessageDelayTime);
             ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerMessagesAndIO);
         }
     }

@@ -7,6 +7,7 @@
     using Chess.Board.Contracts;
     using Chess.Common;
     using Chess.Engine.Contracts;
+    using Chess.Figures.Contracts;
     using Chess.InputProviders.Contracts;
     using Chess.Players;
     using Chess.Players.Contracts;
@@ -20,7 +21,6 @@
 
         private readonly IBoard board;
 
-
         private int currentPlayerIndex;
 
         public StandartTwoPlayerEngine(IRenderer renderer, IInputProvider inputProvider  )
@@ -30,17 +30,17 @@
             this.board = new Board();
         }
 
-       
-
         public void Initialize(IGameInitializationStrategy gameInitializationStrategy)
         {
             // TODO: Remove
             // using Chess.Players;
             // Added for development purposes only 
+
+            // TODO: If players are changed - board is reversed
             this.players = new List<IPlayer>
             {
-                new Player("Pesho", ChessColor.Black),
-                new Player("Gosho", ChessColor.White),
+                new Player("[Black]Gosho", ChessColor.Black),
+                new Player("[White]Pesho", ChessColor.White),
             };
 
             this.SetFirstPlayerIndex();
@@ -59,6 +59,10 @@
                 {
                     var player = this.GetNextPlayer();
                     var move = this.input.GetNextPlayerMove(player);
+                    var from = move.From;
+                    var figure = this.board.GetFigureAtPosition(from);
+                    this.CheckIfPlayerOwnsFigure(player, figure, from);
+
 
                 }
                 catch (Exception exception)
@@ -101,9 +105,22 @@
             {
                 if (this.players[i].Color == ChessColor.White)
                 {
-                    this.currentPlayerIndex = i;
+                    this.currentPlayerIndex = i - 1;
                     return;
                 }
+            }
+        }
+
+        private void CheckIfPlayerOwnsFigure(IPlayer player, IFigure figure, Position from)
+        {
+            if (figure == null)
+            {
+                throw new InvalidOperationException(string.Format("Position {0}{1} is empty", from.Col, from.Row));
+            }
+
+            if (figure.Color != player.Color)
+            {
+                throw new InvalidOperationException(string.Format("Figure at this position {0}{1} is not yours", from.Col, from.Row));
             }
         }
     }

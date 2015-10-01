@@ -23,5 +23,7 @@ namespace Chess.Common
         public const char MinimumColValueOnBoard = 'a';
 
         public const char MaximumColValueOnBoard = 'h';
+
+        public const int MessageDelayTime = 1500; 
     }
 }
