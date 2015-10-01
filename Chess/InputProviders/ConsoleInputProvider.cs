@@ -41,7 +41,7 @@
             var message = string.Format("{0} is next: ", player.Name);
             
             ConsoleHelpers.SetCursorTopCenter(message.Length);
-            Console.WriteLine(message);
+            Console.Write(message);
             ConsoleHelpers.SetCursorReadyToAcceptCommands(message.Length);
             
             var positionAsString = Console.ReadLine().Trim().ToLower();

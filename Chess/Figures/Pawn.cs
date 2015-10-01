@@ -16,7 +16,11 @@
 
         public override ICollection<IMovement> Move()
         {
-            return new List<IMovement> { new NormalPawnMovement(), new AnPasanMovement() };
+            // TODO: Get this list from another class!
+            return new List<IMovement>
+                {
+                    new NormalPawnMovement()
+                };
         }
     }
 }

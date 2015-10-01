@@ -188,7 +188,7 @@
             }
 
             var fromAsString = positionAsString[0];
-            var toAsString = positionAsString[0];
+            var toAsString = positionAsString[1];
 
             var fromPosition = Position.FromChessCoordinates(fromAsString[1] - '0', fromAsString[0]);
 

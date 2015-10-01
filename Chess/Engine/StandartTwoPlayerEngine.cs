@@ -73,6 +73,10 @@
                         movement.ValidateMove(figure, this.board, move);
                     }
 
+                    this.board.MoveFigureAtPosition(figure, from, to);
+
+                    this.renderer.RenderBoard(this.board);
+
                     // TODO: On every move check if we are in check.
                     // TODO: Check pawn on last row
                     // TODO: Check is when 
