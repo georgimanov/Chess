@@ -114,18 +114,18 @@
             Console.SetCursorPosition(centerCol, centerRow);
         }
 
-        public static void SetCursorAtTopCenter(int lenghtOfMessage)
+        public static void SetCursorTopCenter(int lenghtOfMessage)
         {
-            int centerRow = 1;
+            int centerRow = ConsoleConstants.ConsoleRowForPlayerMessagesAndIO;
 
             int centerCol = Console.WindowWidth / 2 - lenghtOfMessage / 2;
 
             Console.SetCursorPosition(centerCol, centerRow);
         }
 
-        public static void SetCursorAtTopCenterInput(int lenghtOfMessage)
+        public static void SetCursorReadyToAcceptCommands(int lenghtOfMessage)
         {
-            int centerRow = 1;
+            int centerRow = ConsoleConstants.ConsoleRowForPlayerMessagesAndIO;
 
             int centerCol = Console.WindowWidth / 2 + lenghtOfMessage / 2 + 1;
 
@@ -183,6 +183,11 @@
         public static Move CreateMoveFromCommand(string command)
         {
             var positionAsString = command.Split('-');
+            if (positionAsString.Length != 2)
+            {
+                throw new InvalidOperationException("Invalid command!");
+            }
+
             var fromAsString = positionAsString[0];
             var toAsString = positionAsString[0];
 
@@ -191,6 +196,12 @@
             var toPosition = Position.FromChessCoordinates(toAsString[1] - '0', toAsString[0]);
 
             return new Move(fromPosition, toPosition);
+        }
+
+        public static void ClearRow(int row)
+        {
+            Console.SetCursorPosition(0, row);
+            Console.Write(new string(' ', Console.WindowWidth));
         }
     }
 }

@@ -40,9 +40,9 @@
             Console.BackgroundColor = ConsoleColor.Black;
             var message = string.Format("{0} is next: ", player.Name);
             
-            ConsoleHelpers.SetCursorAtTopCenter(message.Length);
+            ConsoleHelpers.SetCursorTopCenter(message.Length);
             Console.WriteLine(message);
-            ConsoleHelpers.SetCursorAtTopCenterInput(message.Length);
+            ConsoleHelpers.SetCursorReadyToAcceptCommands(message.Length);
             
             var positionAsString = Console.ReadLine().Trim().ToLower();
             var move = ConsoleHelpers.CreateMoveFromCommand(positionAsString);
