@@ -51,7 +51,7 @@
 
             this.RenderBoarderForBord(startRowPrint, startColPrint, board.TotalRows, board.TotalCols);
 
-            int counter = 0;
+            int counter = 1;
             for (int top = 0; top < board.TotalCols; top++)
             {
                 for (int left = 0; left < board.TotalRows; left++)
@@ -85,10 +85,10 @@
 
         private void RenderBoarderForBord(int startRowPrint, int startColPrint, int boardTotalRows, int boardTotalCols)
         {
+            // Print letters
             var start = startRowPrint + ConsoleConstants.CharactersPerRowPerBoardSquare / 2;
 
-            // Print letters
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < boardTotalCols; i++)
             {
                 Console.SetCursorPosition(start + i * ConsoleConstants.CharactersPerColPerBoardSquare, startColPrint - 1 );
                 Console.Write((char)('a' + i));
@@ -97,11 +97,17 @@
                 Console.Write((char)('a' + i));
             }
 
+            
             // Print numbers
-            for (int i = 1; i <= 8; i++)
+            start = startColPrint + ConsoleConstants.CharactersPerColPerBoardSquare / 2;
+            for (int i = 0; i < boardTotalRows; i++)
             {
-                Console.SetCursorPosition(startRowPrint - 1, (i) * ConsoleConstants.CharactersPerRowPerBoardSquare - 1);
-                Console.Write(i);
+                Console.SetCursorPosition(startRowPrint - 1, start + i * ConsoleConstants.CharactersPerColPerBoardSquare);
+                Console.WriteLine(boardTotalRows - i);
+
+                Console.SetCursorPosition(startRowPrint + boardTotalCols * ConsoleConstants.CharactersPerColPerBoardSquare, start + i * ConsoleConstants.CharactersPerColPerBoardSquare);
+                Console.WriteLine(boardTotalRows - i);
+                
             }
             
             // Top Boarder Line
