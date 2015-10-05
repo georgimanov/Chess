@@ -17,8 +17,14 @@
             var from = move.From;
             var to = move.To;
 
-            if (CheckUpDownMove(from, to) 
-                && this.CheckDiagonalMove(from, to))
+            if ((from.Row == to.Row + 1 && from.Col == to.Col + 1) || // top right
+                (from.Row == to.Row + 1 && from.Col == to.Col) || // top center
+                (from.Row == to.Row + 1 && from.Col == to.Col - 1) || // top left
+                (from.Row == to.Row && from.Col == to.Col - 1) || // left 
+                (from.Row == to.Row && from.Col == to.Col + 1) || // right
+                (from.Row == to.Row - 1 && from.Col == to.Col + 1) || // bottom right) 
+               (from.Row == to.Row - 1 && from.Col == to.Col) || // bottom center
+                (from.Row == to.Row - 1 && from.Col == to.Col - 1)) // bottom left;
             {
                 if (this.CheckOtherFigureIfValid(board, to, other))
                 {
@@ -27,16 +33,6 @@
             }
 
             throw new InvalidOperationException(KingInvalidMove);
-        }
-
-        private static bool CheckUpDownMove(Position from, Position to)
-        {
-            return (from.Row - 1 == to.Row || from.Row + 1 == to.Row);
-        }
-
-        private bool CheckDiagonalMove(Position from, Position to)
-        {
-            return (from.Col + 1 == to.Col || from.Col - 1 == to.Col);
         }
 
         private bool CheckOtherFigureIfValid(IBoard board, Position to, ChessColor color)
