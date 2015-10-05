@@ -38,6 +38,8 @@
         public Move GetNextPlayerMove(IPlayer player)
         {
             Console.BackgroundColor = ConsoleColor.Black;
+            ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerMessagesAndIO);
+
             var message = string.Format("{0} is next: ", player.Name);
             
             ConsoleHelpers.SetCursorTopCenter(message.Length);

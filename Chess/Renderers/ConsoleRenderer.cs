@@ -36,7 +36,7 @@
             // TODO: Add main menu
             ConsoleHelpers.SetCursorAtCenter(GlobalConstants.LogoTitle.Length);
             Console.WriteLine(GlobalConstants.LogoTitle);
-            Thread.Sleep(1000);
+            Thread.Sleep(GlobalConstants.MessageDelayTime);
         }
 
         public void RenderBoard(IBoard board)
