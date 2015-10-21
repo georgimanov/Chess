@@ -19,7 +19,7 @@
             var from = move.From;
             var to = move.To;
 
-
+            // TODO: [Bug] е7-а6 is a valid move
             if (color == ChessColor.White &&
                 to.Row < from.Row)
             {
